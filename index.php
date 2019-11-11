@@ -1,5 +1,25 @@
+<?php
+session_start();
+if(isset($_POST['loginname'])) {
+    session_start();
+    $_SESSION['loginname'] = $_POST['loginname'];
+}
+
+if(isset($_GET['add_to_cart']))
+{
+    $idCookie = $_GET['add_to_cart'];
+    setcookie('id[' . $idCookie . ']', $idCookie, time() + 86400);
+ }
+
+
+?>
 <?php require 'inc/data/products.php'; ?>
 <?php require 'inc/head.php'; ?>
+<div style="text-align: center">
+    <?php if (!empty($_SESSION['loginname'])) : ?>
+        <p> welcome <?= $_SESSION['loginname'] ?> </p>
+    <?php endif ?>
+</div>
 <section class="cookies container-fluid">
     <div class="row">
         <?php foreach ($catalog as $id => $cookie) { ?>

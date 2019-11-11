@@ -1,3 +1,16 @@
+<?php
+if(isset($_POST['loginname']))
+{
+    session_start();
+    $_SESSION['loginname'] = $_POST['loginname'];
+    header('Location: index.php');
+    exit();
+}
+else {
+    echo ' Renseignez votre login';
+}
+?>
+
 <?php require 'inc/head.php'; ?>
 <div class="container" style="margin-top:40px">
     <div class="row">
@@ -7,7 +20,7 @@
                     <strong> Sign in to continue</strong>
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="#" method="POST">
+                    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" role="form">
                         <fieldset>
                             <div class="row">
                                 <div class="center-block">
